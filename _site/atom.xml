@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Aspigirlcodes | Blog</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <id>http://localhost:4000</id>
+ <updated>2018-06-20T09:12:35+02:00</updated>
+ <author>
+   <name></name>
+   <uri></uri>
+   <email></email>
+ </author>
+
+ 
+
+ <entry>
+   <title>Adding Service Workers to your Django App (part 3/3)</title>
+   <link href="http://localhost:4000/django-offline-3"/>
+   <id>http://localhost:4000/django-offline-3</id>
+   <updated>2018-03-24T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;This is part 3 of a 3-part tutorial about adding service workers to a django web-app. In this part we will implement a caching strategy to show old poll data to the user when they are offline.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;This is part 3: Implementing a caching strategy.&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;/django-offline-1&quot;&gt;part 1: preparation...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Adding Service Workers to your Django App (part 2/3)</title>
+   <link href="http://localhost:4000/django-offline-2"/>
+   <id>http://localhost:4000/django-offline-2</id>
+   <updated>2018-03-24T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;This is part 2 of a 3-part tutorial about adding service workers to a django web-app. In this part we will register our first service worker and use it to display an offline page.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;This is part 2: an offline page using a service worker.&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;/django-offline-1&quot;&gt;part 1: preparation...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Adding Service Workers to your Django App (part 1/3)</title>
+   <link href="http://localhost:4000/django-offline-1"/>
+   <id>http://localhost:4000/django-offline-1</id>
+   <updated>2018-03-24T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;In this 3 part tutorial you will learn how to add offline functionality to a Django web-app (the one from the official django tutorial) using a service worker.&lt;/p&gt; &lt;p&gt;I created this tutorial as part of my bachelor thesis, and didn’t change much to it before publishing it here. Hence the...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Summer Books Review</title>
+   <link href="http://localhost:4000/summer-books-review"/>
+   <id>http://localhost:4000/summer-books-review</id>
+   <updated>2017-10-02T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;This summer I ordered three autism related books. Although they were very different, I enjoyed reading all three of them very much. The books are:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;The State of Grace by Rachael Lucas,&lt;/li&gt; &lt;li&gt;Odd Girl Out by Laura James, and&lt;/li&gt; &lt;li&gt;Autism and Asperger Syndrome in Adults by Luke Beardon.&lt;/li&gt; &lt;/ul&gt;...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Nachteilsausgleich, mehr als nur ein schönes Wort?</title>
+   <link href="http://localhost:4000/nachteilsausgleich"/>
+   <id>http://localhost:4000/nachteilsausgleich</id>
+   <updated>2017-09-13T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Jetzt, wo ich drauf und dran bin, mein zweites Bachelorstudium abzuschliessen und zuvor bereits an 2 Unis war, möchte ich gern etwas über Nachteilsausgleich schreiben. Oder genauer gesagt über &lt;strong&gt;Nachteilsausgleich für Autisten an Universitäten und anderen Hochschulen&lt;/strong&gt;. Ziel ist, dass die darin enthaltenen Informationen anderen helfen. Wenn alles klappt, möchte...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>The art of interacting with an autistic software developer (Talk transcript)</title>
+   <link href="http://localhost:4000/autistic-software-developer-talk"/>
+   <id>http://localhost:4000/autistic-software-developer-talk</id>
+   <updated>2017-07-26T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;This is the Transcript of my talk given at Djangocon Europe in 2017. You can find &lt;a href=&quot;https://youtu.be/oTuhqnWRt84&quot;&gt;the youtube video here&lt;/a&gt;, &lt;a href=&quot;https://speakerdeck.com/githubsara/the-art-of-interacting-with-an-autistic-software-developer&quot;&gt;slides can be found here&lt;/a&gt;. I want to thank the Djangocon community for giving me the opportunity and being supportive, My company, 89Grad, for giving me the time...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Weighted Blanket DIY</title>
+   <link href="http://localhost:4000/weighted-blanket"/>
+   <id>http://localhost:4000/weighted-blanket</id>
+   <updated>2017-06-14T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/gewichtsdecke&quot;&gt;Diese Anleitung gibt es auch auf Deutsch.&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Since my diagnosis I know now for sure that fighting overloads doesn’t work. So I often end up hiding under a blanket on the couch or in my bed. Sometimes I listen to music, sometimes even that is too much. It is...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Gewichtsdecke (Anleitung)</title>
+   <link href="http://localhost:4000/gewichtsdecke"/>
+   <id>http://localhost:4000/gewichtsdecke</id>
+   <updated>2017-05-20T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/weighted-blanket&quot;&gt;This post also exists in English.&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Seit ich weiss, dass es nichts bringt Overloads zu bekämpfen, verschanze ich mich oft unter eine Decke im Schlafzimmer oder auf dem Sofa. Manchmal höre ich dann Musik. Manchmal ist auch das mir zu viel. In diesen Phasen, wo ich das Pulsieren und...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>The more accessible way to ask for a phone number</title>
+   <link href="http://localhost:4000/accessible-phone"/>
+   <id>http://localhost:4000/accessible-phone</id>
+   <updated>2017-05-19T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;This project consists of a small demo showing the problems and suggesting some solutions. I talked about this in my very first lighting talk ever at Djangocon Europe 2017.&lt;/p&gt; &lt;p&gt;You can view the &lt;a href=&quot;https://aspigirlcodes.github.io/accessiblephone/&quot;&gt;demo here&lt;/a&gt;, and find the &lt;a href=&quot;https://github.com/aspigirlcodes/accessiblephone&quot;&gt;source code here&lt;/a&gt;.&lt;/p&gt; &lt;h2 id=&quot;introduction&quot;&gt;introduction&lt;/h2&gt; &lt;p&gt;Over the years phones have...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>10 Prejudices that lead me to believe I couldn't possibly be autistic</title>
+   <link href="http://localhost:4000/10-prejudices-autism"/>
+   <id>http://localhost:4000/10-prejudices-autism</id>
+   <updated>2017-04-30T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;I was diagnosed with autism in my late twenties. But that doesn’t mean I didn’t think about the possibility that I could be autistic long before that. While seeing my younger brother and cousins (all boys) getting diagnosed, being a trained inclusion responsible for autistic kids on summer camps and...</content>
+ </entry>
+
+ 
+
+</feed>

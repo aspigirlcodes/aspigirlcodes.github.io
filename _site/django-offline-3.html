@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Adding Service Workers to your Django App (part 3/3)</title>
+  <meta name="description" content="Learn how to add service workers to the polls app from the official django tutorial.">
+
+	<!-- CSS & fonts -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	      <a href="/about" title="About">About</a>
+	    
+	  
+	    
+	  
+	    
+	      <a href="/autism" title="Autism">Autism</a>
+	    
+	  
+	    
+	      <a href="/deutsch" title="Deutsch">Deutsch</a>
+	    
+	  
+	    
+	      <a href="/diy" title="DIY">DIY</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/programming" title="Code">Code</a>
+	    
+	  
+	    
+	      <a href="/travel" title="Travel">Travel</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    
+    <!-- Nav links -->
+	  
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <footer>
+
+	<span>version 1.0.0</span>
+
+</footer>
+
+	
+
+</nav>
+
+    
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+
+      <!-- Header -->
+      
+        <header id="header" class="parent justify-spaceBetween">
+  <div class="inner w100 relative">
+    <span class="f-left">
+      <a href="/">
+        <div id="brand">
+          aspi<span>girl</span>codes
+        </div>
+      </a>
+    </span>
+    <span id="nav-links" class="absolute right bottom">
+      <!-- Nav pages -->
+      
+      
+	      
+	    
+	      
+	        <a href="/about" title="About">About</a>
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	        <a href="/autism" title="Autism">Autism</a>
+	      
+	    
+	      
+	        <a href="/programming" title="Code">Code</a>
+	      
+	    
+	      
+	        <a href="/diy" title="DIY">DIY</a>
+	      
+	    
+	      
+	        <a href="/travel" title="Travel">Travel</a>
+	      
+	    
+	      
+	        <a href="/deutsch" title="Deutsch">Deutsch</a>
+	      
+	    
+
+      <!-- Nav links -->
+	    
+
+    </span>
+  </div>
+</header>
+
+      
+
+    <!-- Main content -->
+	  <div id="container">
+		  
+		<main>
+
+			<article id="post-page">
+	<h1>Adding Service Workers to your Django App (part 3/3)</h1>
+	<time datetime="2018-03-24T00:00:00+01:00" class="by-line">24 Mar 2018</time>
+	<div class="content">
+
+		<p>This is part 3 of a 3-part tutorial about adding service workers to a django web-app. In this part we will implement a caching strategy to show old poll data to the user when they are offline.</p>
+
+<ul>
+  <li>This is part 3: Implementing a caching strategy.</li>
+  <li><a href="/django-offline-1">part 1: preparation and setup</a></li>
+  <li><a href="/django-offline-2">part 2: an offline page using a service worker</a></li>
+</ul>
+
+<h1 id="implementing-a-caching-strategy">Implementing a Caching Strategy</h1>
+
+<h2 id="caching-patterns">Caching Patterns</h2>
+
+<p>Before starting implementing a caching strategy for the polls app, this
+subsection is dedicated to give an overview of some common caching
+patterns. Your caching strategy will typically include multiple of those
+patterns and variations on them, depending on the content.</p>
+
+<dl>
+  <dt>Cache only:</dt>
+  <dd>
+    <p>Assets that almost never change, such as certain CSS files and
+background or header images, can just be loaded once during the
+service worker installation, and then always be served from cache.</p>
+  </dd>
+  <dt>Network only:</dt>
+  <dd>
+    <p>This is what would happen without a service worker. It can be
+achieved by simply ignoring the requests fetch event, which then by
+default gets past on to the server.</p>
+  </dd>
+  <dt>Cache, fallback to network:</dt>
+  <dd>
+    <p>In this case, the service worker tries to find the asset in the
+cache first, and if this fails, it attempts to serve it from
+the network. This can be used for a type of assets that you know
+will never change once it is served, but for some reason you cannot
+or do not want to download it yet at the moment the service worker
+is installed.</p>
+  </dd>
+  <dt>Network, fallback to cache:</dt>
+  <dd>
+    <p>Here you will always try to fetch the request from the network
+first, but if this fails, you will return the version from
+the cache.</p>
+  </dd>
+  <dt>Cache then network:</dt>
+  <dd>
+    <p>This approach tries to be fast and up-to-date. It will first serve
+the version from the cache, as this is faster. Then it will try to
+fetch the same content from the network as well, and update it as
+soon as it arrives.</p>
+  </dd>
+  <dt>Generic fallback:</dt>
+  <dd>
+    <p>This is similar to our custom offline page. When the network request
+fails, we will get some generic asset from the cache, which is
+better than just an error. It can also be used for images. If the
+service worker cannot get this specific image, it might return a
+generic image that has been cached during installation. This will
+look more in theme than just failing to load the image.</p>
+  </dd>
+</dl>
+
+<p>Although it is not mentioned explicitly, often when getting a response
+from the network, it is a good idea to create a new cache entry, or
+update the old one.</p>
+
+<h2 id="caching-the-polls-app">Caching the Polls App</h2>
+
+<p>For this tutorial, I have chosen the following caching strategy:</p>
+
+<ul>
+  <li>
+    <p>Static assets will be cached on service worker installation, and
+served from cache, falling back to network.</p>
+  </li>
+  <li>
+    <p>For HTML pages the service worker will attempt to serve them from
+the network first, and cache them. If the network fails, it will try
+to serve them from the cache, and if they are not found in the
+cache, it will serve our custom offline page.</p>
+  </li>
+</ul>
+
+<p>Here is what this looks like in code (note that the install and activate
+events remain the same, and are left out of the code snippet):</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">CACHE_NAME</span> <span class="o">=</span> <span class="s2">"polls-cache-v3"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">CACHED_URLS</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"/polls/offline/"</span><span class="p">,</span>
+  <span class="s2">"/static/polls/style.css"</span><span class="p">,</span>
+  <span class="s2">"/static/polls/images/background.png"</span><span class="p">,</span>
+  <span class="s2">"/static/polls/app.js"</span>
+<span class="p">]</span>
+
+<span class="p">...</span> <span class="c1">// Install and activate events remain the same</span>
+
+<span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"fetch"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">requestURL</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+  <span class="c1">// request for a html file</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"accept"</span><span class="p">).</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"text/html"</span><span class="p">)){</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span> <span class="c1">// answer the request with ...</span>
+      <span class="nx">caches</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">CACHE_NAME</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">cache</span><span class="p">){</span> <span class="c1">//open cache</span>
+        <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span> <span class="c1">// try to fetch from server</span>
+          <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">networkResponse</span><span class="p">){</span> <span class="c1">//if suceeds</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">networkResponse</span><span class="p">.</span><span class="nx">ok</span><span class="p">){</span> <span class="c1">//if it is not some errorpage</span>
+              <span class="c1">//put a copy of the response in the cache</span>
+              <span class="nx">cache</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">,</span> <span class="nx">networkResponse</span><span class="p">.</span><span class="nx">clone</span><span class="p">());</span>
+            <span class="p">};</span>
+            <span class="k">return</span> <span class="nx">networkResponse</span><span class="p">;</span> <span class="c1">//and return the response</span>
+          <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="c1">// if fetching from server fails</span>
+            <span class="c1">// return copy from cache or offline page from cache</span>
+            <span class="k">return</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+              <span class="k">return</span> <span class="nx">response</span> <span class="o">||</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s2">"/polls/offline/"</span><span class="p">);</span>
+            <span class="p">});</span>
+          <span class="p">});</span>
+      <span class="p">})</span>
+    <span class="p">);</span>
+  <span class="c1">//request is one of the resources cached during registration</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span>
+    <span class="nx">CACHED_URLS</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">requestURL</span><span class="p">.</span><span class="nx">href</span><span class="p">)</span> <span class="o">||</span>
+    <span class="nx">CACHED_URLS</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">requestURL</span><span class="p">.</span><span class="nx">pathname</span><span class="p">)</span>
+  <span class="p">){</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span> <span class="c1">// answer the request with ...</span>
+      <span class="nx">caches</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">CACHE_NAME</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">cache</span><span class="p">){</span> <span class="c1">// open cache</span>
+        <span class="k">return</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+          <span class="c1">// return matched result from cache or try to fetch from network</span>
+          <span class="k">return</span> <span class="nx">response</span> <span class="o">||</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">})</span>
+    <span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>The cache name is updated to v3. And the file is now also added to the
+array of URLs to be cached during installation. The install and activate
+event logic remains the same. But the fetch event is updated to fulfill
+the new requirements. It exists of two parts, written as an if and an
+else if clause. The if clause filters out all requests for HTML files.
+Then it opens the cache and tries to fetch those request from the
+network. If this succeeds, a response will be returned. A clone of this
+response has to be put in the cache, except if it was some kind of error
+response, as you do not want to clutter your cache with those. It is
+important to clone the response, as each response can only be consumed
+once. The response itself is returned to the page. If the network fetch
+fails, first the script tries to match the actual request with the cache
+entries. Remember that succeeds even when nothing is found. Therefore
+the script returns this response or the offline page from the cache. The
+second part (the else if clause) takes care of those assets that were
+cached during installation. It opens the cache and returns the response
+from it. This should normally be there, but if for some reason it isn’t,
+we can still try to fetch it from the network. Requests that do not fit
+any of those clauses will just pass trough the service worker and be
+requested from the server only. Now, run your Django development server
+() and test out your new service worker. Be sure not to forget to give
+your service worker the chance to be activated before you start testing
+its behavior.</p>
+
+<h2 id="letting-the-user-know-the-content-might-be-outdated">Letting the User Know the Content Might be Outdated</h2>
+
+<p>Thanks to our caching strategy users will be able to view some content
+even if they are offline. This also means, however, that they might see
+outdated content without noticing. Also, the way the polls app functions
+right now, users might try to submit a vote to a poll when offline,
+which won’t work. From a usability point of view, we should let users
+know in advance, rather than letting them find out another way. This
+looks more straightforward than it is. The service worker can fetch
+responses or craft its own, but it can not easily make changes to
+responses it got from the server or the cache. These are read-only. (If
+you want to try it anyway, Craig Russell wrote a blogpost about it
+@serviceworker.) From the page itself, we have easy access to the
+property, however this is implemented differently by different browsers,
+and does not always mean the same as the service worker has served this
+page from cache. Because of this, the most recommended way to check
+whether or not someone is offline is by sending an AJAX request to the
+server. When you have a kind of app-shell HTML page, that then uses an
+AJAX-request to get from the server, this comes together really nicely.
+You serve the shell HTML page from cache. It has some JavaScript code to
+(1) set up an eventlistener for messages from te service worker, and (2)
+request . The service workers fetch event will probably contain a
+separate if clause for the case. It might get the data with a network,
+fallback to cache approach with updating the cache. In the case the data
+comes from the cache, the service worker can now additionally send a
+message to the page that the data has been served from the cache.
+However this approach does not work when requesting the whole page at
+once, because by the time the eventlistener will be set up and running,
+the message has long been issued and gone. For this tutorial, rather
+than issuing a useless AJAX request from the page, I chose to send a
+message to the service worker. The service worker reacts to this message
+by requesting a page from the server, and in case this fails, sends a
+message back to the page confirming the offline status. This approach is
+not perfect, as the page might have been delivered from the network if
+the network issues occurred right in between the page load and the
+message, but the result is usable and lets me demonstrate both
+directions of page - service worker messaging. There is more to
+messaging than this though. A service worker can also send broadcast
+messages to all of its pages, and you can set up a channel for
+communicating forth and back between a service worker and a page. Those
+things are not covered here. First, set up the page side of the
+messaging. To do this, add the following code to the file:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="k">if</span> <span class="p">(</span><span class="s2">"serviceWorker"</span> <span class="k">in</span> <span class="nx">navigator</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">controller</span><span class="p">){</span>
+  <span class="c1">// serviceWorker in navigator does not mean service worker installed.</span>
+  <span class="c1">// we need controller to be available</span>
+  <span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"message"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+    <span class="c1">// when receiving a message</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span> <span class="o">===</span> <span class="s2">"offline"</span><span class="p">){</span> <span class="c1">// if the data is "offline"</span>
+      <span class="c1">// add an alert to the top of the page</span>
+      <span class="kd">var</span> <span class="nx">newDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'div'</span><span class="p">)</span>
+      <span class="kd">var</span> <span class="nx">newContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s2">"You are currently offline. "</span> <span class="o">+</span>
+        <span class="s2">"The content of this page may be out of date."</span><span class="p">);</span>
+      <span class="nx">newDiv</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newContent</span><span class="p">);</span>
+      <span class="nx">newDiv</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'alert'</span><span class="p">)</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">);</span>
+      <span class="c1">// if there is a submit button on the page, dissable button</span>
+      <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[type='submit']"</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">){</span>
+        <span class="nx">b</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">,</span> <span class="s2">""</span><span class="p">);</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+  <span class="p">});</span>
+  <span class="c1">// send a message to the service worker</span>
+  <span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s2">"offline?"</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>If service workers are supported and a service worker is installed
+(controller is available), this code first sets up an event listener for
+message events. As there might at some point be different messages we
+check for the message data, and if it fits we create a new div with a
+warning message. JQuery is not a dependency for this project, so vanilla
+JavaScript is used to do this. Of course you could also use JQuery if
+you want to. Add the alert class to the div so that you can style it
+later. Also, there is code to disable the submit button if there is one.
+This code disables the first submit button only, if you have more than
+one submit button, you would have to adapt it. After setting up the
+event listener, a message is sent to the service worker. On the service
+worker side, we will update the version number and add a new event
+listener for messages like so (note that all other event listeners
+remain the same and are omitted in the code snippet):</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">CACHE_NAME</span> <span class="o">=</span> <span class="s2">"polls-cache-v4"</span><span class="p">;</span>
+
+<span class="p">...</span> <span class="c1">// CACHED_URLS and all other event listeners remain the same</span>
+
+<span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"message"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span> <span class="o">===</span> <span class="s2">"offline?"</span><span class="p">){</span> <span class="c1">// check the message data</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="s2">"/polls/"</span><span class="p">).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+    <span class="c1">// fetch from the network and if it fails</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">){</span>
+      <span class="c1">// get the client that sent this message</span>
+        <span class="nx">client</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s2">"offline"</span><span class="p">);</span> <span class="c1">// and send a confirmation message</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>While there is only one service worker, there can be multiple clients.
+The client-id of the client sending a message to the service worker is
+recorded in . Based on this the service worker can get this client and
+post it a message. It does this only when the server is not reachable
+though. When the fetch request succeeds, no action is taken. Finally,
+you can style the offline warning by adding some rules to your style.css
+file:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="o">...</span>
+
+<span class="nc">.alert</span><span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#F8D7DA</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#7A1C2F</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Time to test! Fire up your Django development server (), let your
+service worker install and activate, and browse some pages to cache
+them. Then turn of the server, and revisit those pages. You should now
+see the warning message and the voting button should be disabled.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Django serves static files with a longer cache header. This
+becomes very annoying when working with service workers. There is no
+such thing as reload service worker while ignoring cache, as there is
+for reload page. So you might have to clear your browser cache
+manually for this to work. This is a good reminder that you will have
+to take care of what cache header your static files will be served
+with in production.</p>
+</blockquote>
+
+<h2 id="what-is-next">What is Next?</h2>
+
+<p>You now have a pretty good idea of what a service worker is and how you
+can use it for caching specific pages of your website. You also got
+acquainted with the service worker lifecycle and might have encountered
+some service worker pitfalls already. The one thing holding me back from
+using service workers for more complex things is that there is still no
+easy solution for automated testing of service workers. Lack of browser
+support for the newer APIs could be another minor reason, but this one
+can be counted for by progressive implementation and will solve itself
+eventually. I learned a lot from the book “Building progressive web
+apps” by Tal Ater @ater2017building. If you want to look online for
+resources, you might want to search for ‘indexedDB’, ‘Background Sync’
+and ‘Push Notifications’. Also not covered in this tutorial is the Web
+app manifest.</p>
+
+<ul>
+  <li>This was part 3: Implementing a caching strategy.</li>
+  <li><a href="/django-offline-1">part 1: preparation and setup</a></li>
+  <li><a href="/django-offline-2">part 2: an offline page using a service worker</a></li>
+</ul>
+
+
+	</div>
+	<p>
+		Categories: 
+		
+  		<a href="/programming">Programming</a>
+  		
+  	
+	</p>
+</article>
+
+
+	  </main>
+		
+		  <!-- Pagination links -->
+      
+
+	  </div>
+	    
+	    <!-- Footer -->
+	    <footer>
+  <span><a href="https://www.twitter.com/aspigirlcodes">@aspigirlcodes</a></span>
+  <br/>
+  <span>Built with Jekyll and the Monochrome theme</span>
+</footer>
+
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+	</div>
+</body>
+</html>

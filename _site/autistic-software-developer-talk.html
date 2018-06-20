@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>The art of interacting with an autistic software developer (Talk transcript)</title>
+  <meta name="description" content="Talk transcript of my Djangocon Europe 2017 Talk.">
+
+	<!-- CSS & fonts -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	      <a href="/about" title="About">About</a>
+	    
+	  
+	    
+	  
+	    
+	      <a href="/autism" title="Autism">Autism</a>
+	    
+	  
+	    
+	      <a href="/deutsch" title="Deutsch">Deutsch</a>
+	    
+	  
+	    
+	      <a href="/diy" title="DIY">DIY</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/programming" title="Code">Code</a>
+	    
+	  
+	    
+	      <a href="/travel" title="Travel">Travel</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    
+    <!-- Nav links -->
+	  
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <footer>
+
+	<span>version 1.0.0</span>
+
+</footer>
+
+	
+
+</nav>
+
+    
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+
+      <!-- Header -->
+      
+        <header id="header" class="parent justify-spaceBetween">
+  <div class="inner w100 relative">
+    <span class="f-left">
+      <a href="/">
+        <div id="brand">
+          aspi<span>girl</span>codes
+        </div>
+      </a>
+    </span>
+    <span id="nav-links" class="absolute right bottom">
+      <!-- Nav pages -->
+      
+      
+	      
+	    
+	      
+	        <a href="/about" title="About">About</a>
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	    
+	      
+	        <a href="/autism" title="Autism">Autism</a>
+	      
+	    
+	      
+	        <a href="/programming" title="Code">Code</a>
+	      
+	    
+	      
+	        <a href="/diy" title="DIY">DIY</a>
+	      
+	    
+	      
+	        <a href="/travel" title="Travel">Travel</a>
+	      
+	    
+	      
+	        <a href="/deutsch" title="Deutsch">Deutsch</a>
+	      
+	    
+
+      <!-- Nav links -->
+	    
+
+    </span>
+  </div>
+</header>
+
+      
+
+    <!-- Main content -->
+	  <div id="container">
+		  
+		<main>
+
+			<article id="post-page">
+	<h1>The art of interacting with an autistic software developer (Talk)</h1>
+	<time datetime="2017-07-26T00:00:00+02:00" class="by-line">26 Jul 2017</time>
+	<div class="content">
+
+		<p>This is the Transcript of my talk given at Djangocon Europe in 2017. You can find <a href="https://youtu.be/oTuhqnWRt84">the youtube video here</a>, <a href="https://speakerdeck.com/githubsara/the-art-of-interacting-with-an-autistic-software-developer">slides can be found here</a>. I want to thank the Djangocon community for giving me the opportunity and being supportive, My company, 89Grad, for giving me the time and support to do this, and <a href="https://fabiennesieger.com/">Fabienne Sieger</a> and <a href="http://fuchskind.de/">Daniela Schreiter</a> for letting me use their Artwork.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>I want to start with something that might be obvious but nevertheless is important.</p>
+
+<p>Being every person is unique. And it probably doesn’t surprise you that this is also valid for Autistic people.</p>
+
+<p>This also means that what I’ll be telling in this presentation is my story, it is based on my own experience and some research I’ve done. And although I am trying to give a differentiated picture. Everything I say cannot be equally true for all autistic people.</p>
+
+<h2 id="autism">Autism</h2>
+
+<p>The thing I want to talk to you about is officially called autism spectrum disorder. Although I’ll just call it autism for short. This includes also previously separately diagnosed conditions such as aspergers syndrome.</p>
+
+<p>Autism is a neurodevelopmental disorder, which means that the autistic brain works different than most brains. Autism is a condition people have from birth, and you have it your whole life. It is not a disease, it cannot be cured, and it’s not caused by vaccines.</p>
+
+<p>In fact, like most autistic people I am convinced that the autistic brain is just working differently, it is not broken, and it is not working less well than more traditional kind of brains. Therefore, I would like to get rid of the word disorder and instead talk about neurodiversity.</p>
+
+<h2 id="details">Details</h2>
+
+<p>Autistic people are detail oriented. You might have heard about that, it is the reason they hire us to test your software. And although it is true that I am good at details, I have other qualities than that too. And this also doesn’t necessarily mean that I want to be testing software my whole life. In fact it’s even worse, I am as addicted as most of you to the high of developing new features that I would like to forget about testing sometimes.</p>
+
+<p>But what makes me good at details? It seems that the automatic filtering of details, and things that are out of focus in general doesn’t really work for autistic people as it does in most people’s brains. So most of those details, come in unfiltered, and if we want to filter them, we do that manually.</p>
+
+<p>This means my world is full of details all the time, I don’t put on my detail glasses to find some bugs, and then take them off before I go home. No, the world just enters my brain full HD all day. If I walk through a mall or train station, details on people’s clothes, echoing noises, perfumes and cigarette smells fill up my sensory buffers faster than I can manually process them. On a rainy day, my brain doesn’t filter out the sense of each single raindrop on my skin, and when sitting in a restaurant, it doesn’t filter out the voices of the people at the other tables talking.</p>
+
+<h2 id="sensory-sensitivity">Sensory sensitivity</h2>
+
+<p>Being detail oriented has its positive and negative sides. The annoying thing is that it often comes combined with hypersensitivity. And when I say hypersensitivity I mean hypersensitivity in a way that can make you very uncomfortable or even sick. I am personally most sensitive to sound. I also had this problem of being scared of grass when I was a kid. Right now my sensitivity to touch remains visible in the fact that walking through the rain is one of my most hated things in life. It is not that each single drop touching my skin hurts, but I feel it, and there are many of them. Some other autistic people have much stronger hypersensitivities. Causing nausea and severe headaches, hypersensitivity means autistic people often have to adapt their environments to be able to function normally.</p>
+
+<p>It is fairly obvious that if people are very sensitive to light in general, to fluorescent lighting in particular or to sound and noises, this has implications for their working environments. Small adaptations can make a huge difference.</p>
+
+<p>Also don’t forget that an awful lot of sensory inputs happen already on the way to work. Allowing flexible working hours that make it possible to avoid rush hours can help in this case. If you’re autistic, optimise your way to work! it can make a huge difference. I optimised my way to work both for predictability, and avoiding crowds, by taking the train rather than other public transport or bicycle. Bicycle scores low on predictability as it is highly dependent on the weather, and as I already said I am highly sensitive to rain. I take only certain trains, to avoid crowds in the main station, and I only use a particular exit, which is less crowded and doesn’t require me to go through an underground passage with horrible acoustics.</p>
+
+<p>Overall, keep in mind that sensory sensitivity is a very personal thing. Some people might even be less sensitive than average to certain senses. So ask the person involved what helps most, he or she will know best. And even if you find it hard to believe that someone can be so sensitive to something, take sensory difficulties seriously.</p>
+
+<h2 id="creativity-and-flexibility">Creativity and flexibility</h2>
+
+<p>So we know autistic people perceive and process information differently. Also, they need to survive in an environment that is not designed for the way their brain functions, by either adapting the environment, or learning new skills themselves, skills that no one ever teaches them, as those things they need to learn, come natural for most people. In this light, it should not surprise you, that among those people, we will find a good amount of creative problem solvers.</p>
+
+<p>And indeed, autistic people often are creative. The fact that we don’t see them at first sight is related a flaw in our thinking. Where creativity is automatically linked to flexibility, to the liking of chaos even. But it is possible to be creative without being flexible, and autistic people often possess exactly this combination of characteristics.</p>
+
+<p>This is also nicely illustrated by this amazing piece of art by my friend Fabienne Sieger, showing a sorted pomegranate.</p>
+
+<p>But what does it mean when I say that my brain is not flexible.</p>
+
+<p>It means my brain doesn’t work without a plan. If my plan gets broken, my brain panics, there is no coming further until a new plan is in place. I love structure and routine, as they diminish the chance that plans get broken. I can’t let go of plans, I can’t learn to go with the flow, believe me I’ve tried, it doesn’t work. My life is all about planning, structure and routine.</p>
+
+<p>But it is also about learning new things. The fact that my brain isn’t flexible doesn’t mean I don’t want to learn and discover new things. It just means that it is more of a challenge. It means that if I keep a good amount of planning and routine in the mix, I will have some energy left for new and unexpected things. If I try to do it without planning, all my energy will be lost in panicking, and I won’t be able to discover new things.</p>
+
+<p>All in all this flexibility problem is a bit of a bummer. Of course we can say who finds structure important will do her best to write structured code, so that is great. But after all,  software development companies often want to be cutting edge and agile, and they might not always know how an autistic employee can fit into this picture.</p>
+
+<p>To those people I want to say that it is not all bad news, I might not have full fledged flexibility the way you define it, I have something else, I call it planned flexibility and I use it quite often when exploring unknown territory myself.</p>
+
+<h2 id="planned-flexibility">Planned Flexibility</h2>
+
+<p>The traditional idea of a plan looks like a linear flowchart. It is very simple but it doesn’t bring you very far in a world that is quite complex. luckily my brain is also capable of more complex plans. plans that contain a plan A, B, C and D, plans that contain decision points, plans that look more like extended flowcharts.</p>
+
+<p>So if I ask you for the plan, and you don’t know it yet, don’t be afraid to tell me. If you know when you will know more, than tell me that, if you know it will be one of a limited amount of possibilities, than tell me the possibilities. In fact I would rather construct a more complex plan that works, than being told a simple plan that you already know is not going to be followed.</p>
+
+<p>Of course the weakest points of planned flexibility are still the decision points. I’ll need time to process them, and the person without a plan doesn’t. I can get stuck on them, due to internal or external circumstances and might need help to continue, but overall, I like the possibilities planned flexibility gives me. and I think it works quite well in a lot of situations.</p>
+
+<p>At the workplace this means hotdesking might be hard. I wouldn’t be able to come to work not having a plan on where to sit. Or maybe I could, but it would cost me such a large amount of energy each day, that I wouldn’t be comfortable doing it.</p>
+
+<p>For a lot of other situations planned flexibility is a lot better than no plan at all.</p>
+
+<p>Structured meetings help, as oral communication is not very structured by default. I personally feel that I can handle structured meetings very well, but the unstructured variety costs me a lot of energy. A good example of a well structured meeting is the daily standup meeting from the scrum method.</p>
+
+<p>And please leave autistic people time to adapt to new situations, even if you don’t understand.</p>
+
+<p>Again planning needs are very individual so ask your specific employee or colleague what helps most.</p>
+
+<h2 id="social-interaction-and-smalltalk">Social interaction and smalltalk</h2>
+
+<p>Now I want to tell you about my most spectacular escape from smalltalk.</p>
+
+<p>It happened a couple of years ago when I was working at the university. And together with some other members of our team we were traveling to a project meeting of a research project we were working on. Most of the other people that were coming along either had a presentation to give, or played a very important role in this project. I however had neither of those reasons to attend this meeting, but they took me along anyhow. when I asked our group leader why and what I was supposed to do there, he said just talk to the people during the breaks, do some networking. These words had kept me thinking during our train ride. I remembered the coffee breaks at previous meetings. They had been horrible. I hadn’t managed to keep a single conversation going. I was so stressed that I forgot peoples names. I couldn’t find the right words to answer their questions. And as I replayed those images in front of my eyes. Going to someplace where this would be my main responsibility, even if it was just for a couple of days seemed the most scary and the most wrong thing to do. So as the train slowed down and came to a stop, somewhere on the way, I grabbed my purse and got out. There I was, standing on an empty platform in a french village in the middle of nowhere, breathing the freedom of not having to do smalltalk.</p>
+
+<p>I am not telling this because I am proud of it, I am not. I am telling this because it illustrates how hard those casual social interaction situations can be for autistic people. And I am also telling you this because this is not the end of the story. After I got back to switzerland I needed to talk to our professor about this incident. I would have prefered to write it all down, so that he could read it, but he hadn’t accepted that. Also my request of taking someone from our team I was comfortable with with me was declined. And so I was brought by two friendly colleagues, to his office. No way to escape this time.</p>
+
+<p>He asked one question after the other. Why this had happened. what I planned to do next, how it could be that I had been able to talk on previous occasions, but wasn’t now, what he had done wrong, …It went on and on. And although the time he left in between his questions might have been long enough for most people to answer, it wasn’t for me. And so the queue of questions I was trying to find the right words as an answer for in my head grew longer and longer, as I sat there, without being able to say a word for more than an hour. This was the beginning of the end of my time at university. It was also the trigger for me to seek diagnosis. I’ve learned a lot since this day. I’ve become a software developer, I know now, that although autistic people communicate differently, and we often cannot fulfill the standard social interaction expectations, including smalltalk, reading body language and facial expressions, and socially accepted lying, this doesn’t mean communication is not possible. And problems do not have to become this big.</p>
+
+<p>So here are some things I’ve learned.</p>
+
+<p>My detail oriented brain often needs very detailed information. Also, I cannot guarantee that I will see what the expectations are if they are not made explicit. So here I need my coworkers to be more verbose than they usually are.</p>
+
+<p>I use written communication in situations where that makes me more comfortable. Even in situations where it is considered unusual, because the other person is sitting at the table next to me for example.</p>
+
+<p>In the beginning having a single contact person to direct all my questions to helped me a lot. It gave me something to hold onto in a working environment and team where everything was new.</p>
+
+<p>I have been very clear from the beginning that I want someone else to be the client interface, and I don’t take phone calls. These things cost me a lot of energy, and other people do them much better anyway.</p>
+
+<p>Of course misunderstandings will happen. But if both sides are open and constructive, I think they can be resolved before they become huge problems.</p>
+
+<p>Again, everyone is different, and this holds true for communication maybe even more than for the other topics I’ve covered.</p>
+
+<h2 id="energy-management-overloads-and-meltdowns">Energy management, overloads and meltdowns</h2>
+
+<p>After all the things that I told you, it might already be clear to you that the daily life of autistic people often cost a lot of energy. sadly, energy is a limited resource, also for us. Which leaves us with the question what happens when all those details, unexpected situations and social interaction gets to much?</p>
+
+<p>This situation is called a overload, and it is sometimes compared with a stack overflow in computers. There is just too much data coming in, and the brain has no capacity to process it anymore. Depending on a lot of factors, this can lead to either a meltdown, the aggressive volcano eruption so to say. Or a shutdown. If I feel an overload coming, I need a quiet place, to take a break from all of those things I had too much of (being sensory input, social interaction and unexpected things) Which means this is also not the best time to talk to me. I know people might want to calm me down, or wonder what has gone wrong. And these might be valid things to talk about at a later point in time, but not at this point.</p>
+
+<p>I am very lucky that at 89grad they are very open for part-time work and flexible working hours. This gives me the flexibility to get home, before my energy level reaches zero, and compensate at any other time. This is actually one of the 2 most important things they do for me, that make my life easier. The other one is that they treat me just like anybody else, except when I ask them not to. And at this point, they evaluate the accommodations based on how doable it is for them to make them happen and not based on whether they think I need them. What they get in return is a highly focussed autistic software developer.</p>
+
+<h2 id="we-are-not-rainman">We are not Rainman…</h2>
+
+<p>I am not Rainman but I do have a unique set of qualities making me good at what I do. Some of them are typical for autistic people, others are unique to me. I am highly motivated to solve problems and write good code. As there are a lot of other autistic people out there who are highly motivated to put their skills into practice. Some of them want to be software testers, or developers like me, but a lot of them also want to do something totally different.</p>
+
+<p>After all it is not surprising that not every person has  to, wants to work in IT, not even if they’re autistic</p>
+
+<h2 id="diagnosis-and-self-knowledge">Diagnosis and self knowledge</h2>
+
+<p>You might have noticed that each time when I said something about accommodations, I also mentioned that you should ask the person involved what helps them most. This of course implies some self knowledge of the person involved.</p>
+
+<p>My diagnosis has helped me immensely in knowing what my needs are.  once you know your brain works differently, it is easier to accept that you also have different needs in day to day life. Another thing that can help in communication needs for accommodations and resolve misunderstandings is coaching. When I was preparing this talk I visited Specialisterne in Bern. They said that one of the most important difference with other companies is that with them, coaching is inclusive. This doesn’t mean forcing autistic people to talk about their feelings one hour a week. For them it rather meant that coaches are at the same offices, and are always available to all employees. Of course this is not practicable at any company, although larger companies should really think about this as it could benefit all employees.</p>
+
+<p>Sadly, in practice, depending also on your location, both adult autism diagnosis and good coaches with an understanding of autism can be hard to come by.</p>
+
+<h2 id="the-role-of-community">The role of Community</h2>
+
+<p>But I want to finish on a more positive note by saying some things about our community.</p>
+
+<p>Let me first illustrate why community is important. When I was a kid my parents sent me to our local scouting group. They thought I was going to learn something there, and I don’t blame them, I even believed this myself at some point. However it was terrible. It didn’t have a purpose, social interaction was not regulated at all, they liked to do surprise activities every second month or so. It was hard all the time, and I wasn’t rewarded with the feeling that I had accomplished something or doing something I was interested in at all.</p>
+
+<p>But this doesn’t mean I want to do things on my own all the time. I want to do stuff together with other people too. The most important thing to me however is to combine this with doing something that matters to me. Which is where our community comes in.</p>
+
+<p>I don’t want do my presentation all over again, replacing company by community, but of course, most of the same things apply here that I already mentioned for the workplace. And our django community is already doing a lot of things very well. Which shows that an inclusive mindset and accommodations benefiting one group of people also helps others.</p>
+
+
+	</div>
+	<p>
+		Categories: 
+		
+  		<a href="/autism">Autism</a>
+  		&nbsp;
+  	
+  		<a href="/programming">Programming</a>
+  		
+  	
+	</p>
+</article>
+
+
+	  </main>
+		
+		  <!-- Pagination links -->
+      
+
+	  </div>
+	    
+	    <!-- Footer -->
+	    <footer>
+  <span><a href="https://www.twitter.com/aspigirlcodes">@aspigirlcodes</a></span>
+  <br/>
+  <span>Built with Jekyll and the Monochrome theme</span>
+</footer>
+
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+	</div>
+</body>
+</html>

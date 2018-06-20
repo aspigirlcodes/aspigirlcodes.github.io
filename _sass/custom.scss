@@ -1,0 +1,34 @@
+/*- Custom style -*/
+
+// -- Put custom style under this point -- //
+
+img + em {
+  display: block;
+  text-align: center;
+}
+
+#brand{
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+#brand > span {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 300;
+}
+
+.categories{
+  color: #737373;
+  margin-bottom: 0;
+}
+
+.categories > a{
+  color: #737373;
+}
+footer{
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.post > h2{
+  line-height: 1.2em;
+}
