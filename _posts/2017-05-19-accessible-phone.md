@@ -23,15 +23,21 @@ As always when creating forms, the first thing you should do before adding a pho
 
 There is almost never a reason to make a phone number obligatory, so unless you really think your form is the exception, don't! You don't really need a phone number to inform people of last minute changes of your event. It's up to them to decide about that. You can always write them an email instead.
 
+![Screenshot of a phone number field with an asterix in the label. The help text says: Give us your number or we won't let you play with the big kids!](img/not_accessible.png "Non-accessible way of asking for a phone number")
+
 You certainly don't need the user's phone number to be able to call them and tell them more about your product. Put the information on your website, have your contact data visible there as well, or write them an Email. You're not going to convince anyone who cannot handle being called for whatever reason by calling them.
 
 ## Two more accessible alternatives
 
 If you need the user's phone number, be sure to always clearly state what you are going to use it for (and keep your promise). Text messages for authentication and calling in case an emergency are two valid, but totally different reasons to ask for a phone number. By stating your intent clearly you help the user decide and gain their trust.
 
+![Screenshot of a phone number field with two checkboxes underneith. One says it is ok to call this number, the othere it is ok to text to this number, both are unchecked. the help text says We want to be able to contact you, but you can decide how.](img/accessible_1.png "accessible way of asking for a phone number with checkboxes.")
+
 If you will use the phone number in more than one way, adding checkboxes allowing the user to decide which type of usage they are ok with is a good idea. This can be as rough as "it is ok to call this number", "it is ok to text this number", or something more detailed. The important thing here is that you not only ask for this extra information in the form, but also transfer it together with the phonenumber to any system or person who is going to use it.
 
 For a support group I am in, I added the choices 'calling allowed', 'calling in emergencies allowed' and 'text-based only' to the groups phone list. This change had a huge effect on the amount of people that were prepared to share their phone number.
+
+![Screenshot of two phone number fields. The first help text says: We will use this number for text based communication. The second one say We will use this number if we want to call you.](img/accessible_2.png "accessible way of asking for a phone number in two fields.")
 
 Another way of asking for a phone number that is less pressuring than the standard one field, is having two fields. One for calling and one for text based communication. This way users can put in a friend or relatives number if they are not comfortable with one of the communication methods themselves.
 

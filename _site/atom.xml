@@ -4,42 +4,12 @@
  <title>Aspigirlcodes | Blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-06-20T09:12:35+02:00</updated>
+ <updated>2018-06-20T11:12:58+02:00</updated>
  <author>
    <name></name>
    <uri></uri>
    <email></email>
  </author>
-
- 
-
- <entry>
-   <title>Adding Service Workers to your Django App (part 3/3)</title>
-   <link href="http://localhost:4000/django-offline-3"/>
-   <id>http://localhost:4000/django-offline-3</id>
-   <updated>2018-03-24T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;This is part 3 of a 3-part tutorial about adding service workers to a django web-app. In this part we will implement a caching strategy to show old poll data to the user when they are offline.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;This is part 3: Implementing a caching strategy.&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;/django-offline-1&quot;&gt;part 1: preparation...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Adding Service Workers to your Django App (part 2/3)</title>
-   <link href="http://localhost:4000/django-offline-2"/>
-   <id>http://localhost:4000/django-offline-2</id>
-   <updated>2018-03-24T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;This is part 2 of a 3-part tutorial about adding service workers to a django web-app. In this part we will register our first service worker and use it to display an offline page.&lt;/p&gt; &lt;ul&gt; &lt;li&gt;This is part 2: an offline page using a service worker.&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;/django-offline-1&quot;&gt;part 1: preparation...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Adding Service Workers to your Django App (part 1/3)</title>
-   <link href="http://localhost:4000/django-offline-1"/>
-   <id>http://localhost:4000/django-offline-1</id>
-   <updated>2018-03-24T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;In this 3 part tutorial you will learn how to add offline functionality to a Django web-app (the one from the official django tutorial) using a service worker.&lt;/p&gt; &lt;p&gt;I created this tutorial as part of my bachelor thesis, and didn’t change much to it before publishing it here. Hence the...</content>
- </entry>
 
  
 
