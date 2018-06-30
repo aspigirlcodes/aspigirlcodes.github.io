@@ -4,7 +4,7 @@
  <title>Aspigirlcodes | Blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-06-20T11:12:58+02:00</updated>
+ <updated>2018-06-30T15:02:08+02:00</updated>
  <author>
    <name></name>
    <uri></uri>
@@ -29,6 +29,16 @@
    <id>http://localhost:4000/nachteilsausgleich</id>
    <updated>2017-09-13T00:00:00+02:00</updated>
    <content type="html">&lt;p&gt;Jetzt, wo ich drauf und dran bin, mein zweites Bachelorstudium abzuschliessen und zuvor bereits an 2 Unis war, möchte ich gern etwas über Nachteilsausgleich schreiben. Oder genauer gesagt über &lt;strong&gt;Nachteilsausgleich für Autisten an Universitäten und anderen Hochschulen&lt;/strong&gt;. Ziel ist, dass die darin enthaltenen Informationen anderen helfen. Wenn alles klappt, möchte...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Nice design, but utterly confusing (accessibility)</title>
+   <link href="http://localhost:4000/confusing-design"/>
+   <id>http://localhost:4000/confusing-design</id>
+   <updated>2017-08-13T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;I’ve seen &lt;a href=&quot;https://twitter.com/jesslynnrose/status/896297773066317824&quot;&gt;this survey screenshot on twitter&lt;/a&gt;. It is the perfect example of how something that most people find nice and funny, can be utterly confusing to me. To be honest, I would probably abandon the survey right at this screen. Not because I don’t want to be nice...</content>
  </entry>
 
  
